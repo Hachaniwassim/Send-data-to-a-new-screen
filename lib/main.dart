@@ -134,15 +134,7 @@ class TodosScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(todos[index].title),
-                        onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(todo: todos[index]),
-                ),
-              );
-            },
-
+            
           );
         },
       ),
@@ -153,13 +145,14 @@ class TodosScreen extends StatelessWidget {
 }
 class DetailScreen extends StatelessWidget {
   // In the constructor, require a Todo.
-  const DetailScreen({Key? key, required this.todo}) : super(key: key);
+  const DetailScreen({Key? key}) : super(key: key);
 
   // Declare a field that holds the Todo.
-  final Todo todo;
 
   @override
   Widget build(BuildContext context) {
+        final todo = ModalRoute.of(context)!.settings.arguments as Todo;
+
     // Use the Todo to create the UI.
     return Scaffold(
       appBar: AppBar(
